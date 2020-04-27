@@ -8,11 +8,10 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @EnableGlobalMethodSecurity(securedEnabled=true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
@@ -20,28 +19,71 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     UtenteDettaglioService utenteDettaglioService;
 
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(utenteDettaglioService);
     }
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .anyRequest()
+                .antMatchers("/userLogin")
                 .permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login.jsp")
-                .usernameParameter("username")
-                .passwordParameter("password")
+                .loginPage("/userLogin")
+                .loginProcessingUrl("/appLogin")
                 .defaultSuccessUrl("/home")
-                .failureUrl("/errorLogin")
+                .failureUrl("/userLogin?error=true")
+                .permitAll()
                 .and()
                 .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/index")
+                .logoutSuccessUrl("/userLogin?logout=true")
+                .invalidateHttpSession(true)
+                .permitAll()
                 .and()
-                .csrf();
+                .csrf()
+                .disable();
+//        http.authorizeRequests()
+//                .antMatchers("/form")
+//                .hasAnyRole("SuperUser", "Customer")
+//                .and()
+//                .formLogin()
+//                .loginPage("/loginForm.jsp")
+//                .loginProcessingUrl("/appLogin")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .defaultSuccessUrl("/home")
+//                .failureUrl("/userLogin?error=true")
+//                .and()
+//                .logout()
+//                .logoutSuccessUrl("/userLogin?logout=true");
+
+        //        http.authorizeRequests()
+//                .anyRequest()
+//                .permitAll()
+//                .and()
+//                .formLogin()
+//                .loginPage("/login")
+//                .usernameParameter("username")
+//                .passwordParameter("password")
+//                .defaultSuccessUrl("/home")
+//                .failureUrl("/errorLogin")
+//                .and()
+//                .logout()
+//                .logoutUrl("/logout")
+//                .logoutSuccessUrl("/index")
+//                .and()
+//                .csrf().disable();
     }
+
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(utenteDettaglioService).passwordEncoder(passwordEncoder());
+//    }
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+//        return passwordEncoder;
+//    }
 
 }

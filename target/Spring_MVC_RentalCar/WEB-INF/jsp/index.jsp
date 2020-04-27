@@ -19,7 +19,7 @@
     <body>
     <div align="center">
     <h2>${intestazione}</h2>
-    <a href="${pageContext.request.contextPath}/login">login here</a>
+    <a href="${pageContext.request.contextPath}/userLogin">login here</a>
     </div>
     </body>
 </html>

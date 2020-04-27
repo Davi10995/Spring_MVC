@@ -17,9 +17,9 @@
 </head>
 <body>
 <div class="topnav">
-    <a  class="active" href="list">Home</a>
-    <a href="profilo.jsp">Profilo</a>
-    <a href="parcoAuto">Parco Auto</a>
+    <a  class="active" href="#">Home</a>
+    <a href="#">Profilo</a>
+    <a href="#">Parco Auto</a>
     <div class="login-container">
         <p class="userName">Welcome ${name}</p>
         <form action="logout" method="post" >
