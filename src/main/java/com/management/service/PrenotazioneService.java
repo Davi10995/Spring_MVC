@@ -8,6 +8,6 @@ public interface PrenotazioneService {
     void newReservation(Prenotazione prenotazione);
     void deleteReservation(int id);
     void updateReservation(Prenotazione prenotazione);
-    void getReservationByUserId(int id);
-    void getReservationById(int id);
+    List<Prenotazione> getReservationByUserId(int id);
+    Prenotazione getReservationById(int id);
 }

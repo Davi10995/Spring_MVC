@@ -3,10 +3,11 @@ package com.management.service;
 import com.management.dao.PrenotazioneDao;
 import com.management.model.Prenotazione;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
+@Service
 public class PrenotazioneServiceImpl implements PrenotazioneService{
 
     @Autowired
@@ -32,12 +33,13 @@ public class PrenotazioneServiceImpl implements PrenotazioneService{
     }
 
     @Override
-    public void getReservationByUserId(int id) {
+    public List<Prenotazione> getReservationByUserId(int id) {
         prenotazioneDao.getReservationByUserId(id);
+        return null;
     }
 
     @Override
-    public void getReservationById(int id) {
-        prenotazioneDao.getReservationById(id);
+    public Prenotazione getReservationById(int id) {
+        return prenotazioneDao.getReservationById(id);
     }
 }

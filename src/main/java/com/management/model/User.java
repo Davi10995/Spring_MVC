@@ -112,4 +112,7 @@ public class User {
         this.data = data;
     }
 
+    public boolean match(String name, String password) {
+        return this.nome.equals(name) && this.password.equals(password);
+    }
 }

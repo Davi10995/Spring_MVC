@@ -17,11 +17,11 @@
 </head>
 <body>
 <div class="topnav">
-    <a  class="active" href="#">Home</a>
+    <a  class="active" href="${pageContext.request.contextPath}/home">Home</a>
     <a href="#">Profilo</a>
     <a href="#">Parco Auto</a>
     <div class="login-container">
-        <p class="userName">Welcome ${name}</p>
+        <p class="userName">Welcome ${currentUser.nome}</p>
         <form action="logout" method="post" >
             <button type="submit">Logout</button>
         </form>

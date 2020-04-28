@@ -12,6 +12,6 @@
     <head>
     </head>
     <body>
-        <p>ciao sono davide</p>
+        <p align="center">ciao sono davide</p>
     </body>
 </html>

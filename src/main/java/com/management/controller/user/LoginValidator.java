@@ -1,17 +1,21 @@
 package com.management.controller.user;
 
+import com.management.model.Prenotazione;
 import com.management.model.User;
+import com.management.service.PrenotazioneService;
 import com.management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RequestMapping(value = "/home")
 @Controller
@@ -19,18 +23,25 @@ import javax.servlet.http.HttpSession;
 public class LoginValidator {
     @Autowired
     UserService userService;
-
+    @Autowired
+    PrenotazioneService prenotazioneService;
     @RequestMapping()
-    public String LoginPage(Model model, HttpServletRequest request, @RequestParam("username") String username,  @RequestParam("password") String password) {
+    public String LoginPage(Model model, HttpServletRequest request) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetail = (UserDetails) auth.getPrincipal();
+        User currentUser = userService.getUserByCF(userDetail.getUsername());
+        if(currentUser.tipo.equals("SuperUser")) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", currentUser);
+            List<User> users = userService.getUsers();
+            model.addAttribute("users", users);
+            return "homeAdmin";
+        }
+        else {
+            List<Prenotazione> resList = prenotazioneService.getReservationByUserId(currentUser.id);
+            model.addAttribute("prenotazioni", resList);
+            return "homeCustomer";
+        }
 
-//        if(userService.validate(username, password)) {
-//            User currentUser = userService.getUserByCF(username);
-//            HttpSession session = request.getSession();
-//            session.setAttribute("name", currentUser.nome);
-//            session.setAttribute("tipo", currentUser.tipo);
-//            session.setAttribute("userId", currentUser.id);
-            return "home";
-//        }else
-//            return "login";
     }
 }

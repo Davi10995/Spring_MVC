@@ -26,7 +26,7 @@ public class LoginController
             errorMessge = "You have been successfully logged out !!";
         }
         model.addAttribute("errorMessge", errorMessge);
-        return "loginForm";
+        return "index";
     }
   
     @RequestMapping(value="/logout", method = RequestMethod.GET)
@@ -34,6 +34,7 @@ public class LoginController
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){   
             new SecurityContextLogoutHandler().logout(request, response, auth);
+            request.getSession().invalidate();
         }
         return "redirect:/userLogin?logout=true";
     }

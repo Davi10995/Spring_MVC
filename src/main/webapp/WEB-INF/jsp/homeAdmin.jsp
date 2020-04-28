@@ -16,5 +16,8 @@
     <div align="center">
      <h3>Benvenuto nella home</h3>
     </div>
+<tiles:insertDefinition name="listUsers"/>
 </body>
+
+<tiles:insertDefinition name="footer" />
 </html>

@@ -9,17 +9,17 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<tiles:insertDefinition name="baseLayout" />
-<%--<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>--%>
-<%--<tiles:insertDefinition name="template" />--%>
+<tiles:insertDefinition name="login" />
 <html>
-    <head>
-        <title>Index</title>
-    </head>
-    <body>
-    <div align="center">
-    <h2>${intestazione}</h2>
-    <a href="${pageContext.request.contextPath}/userLogin">login here</a>
-    </div>
-    </body>
+<head>
+    <title>RENTCAR LOGIN</title>
+</head>
+<body>
+
+<div style="text-align: center;">
+    <h1>RentCar Autonoleggio</h1>
+</div>
+<img src="${pageContext.request.contextPath}../logo/logo.jpg">
+</body>
 </html>
+
