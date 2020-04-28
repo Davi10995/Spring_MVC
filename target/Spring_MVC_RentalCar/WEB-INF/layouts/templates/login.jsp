@@ -21,7 +21,7 @@
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
     <div class="login-container">
-        <p>${errorMessge}</p>
+        <p style=color:#ff0000; red >${errorMessge}</p>
         <form action="${pageContext.request.contextPath}/appLogin" method="post" >
             <input type="text" placeholder="CF" name="username"/><br/><br/>
             <input type="password" placeholder="Password" name="password"/><br/><br/>

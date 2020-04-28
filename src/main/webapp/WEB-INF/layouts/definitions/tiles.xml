@@ -3,22 +3,29 @@
         "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
+    <!--    NAVBAR UNA VOLTA LOGGATO-->
     <definition name="baseLayout" template="/WEB-INF/layouts/templates/base.jsp">
         <put-attribute name="titolo" value=""/>
         <put-attribute name="content" value=""/>
         <put-attribute name="footer" value="/WEB-INF/layouts/templates/footer.jsp"/>
     </definition>
+    <!--    NAVBAR PAGINA LOGIN-->
     <definition name="login" template="/WEB-INF/layouts/templates/login.jsp">
         <put-attribute name="titolo" value=""/>
         <put-attribute name="content" value=""/>
         <put-attribute name="footer" value="/WEB-INF/layouts/templates/footer.jsp"/>
     </definition>
+    <!--  FOOTER  -->
     <definition name="footer" template="/WEB-INF/layouts/templates/footer.jsp">
     </definition>
+    <!--    LISTE USER, VEICOLI E PRENOTAZIONI-->
     <definition name="listReservations" template="/WEB-INF/layouts/templates/listReservations.jsp">
     </definition>
     <definition name="listUsers" template="/WEB-INF/layouts/templates/listUsers.jsp">
     </definition>
+    <definition name="listUsers" template="/WEB-INF/layouts/templates/listUsers.jsp">
+    </definition>
+
     <definition name="index" extends="login">
         <put-attribute name="titolo" value="Benvenuti in Rental Car"/>
         <put-attribute name="content" value="/WEB-INF/jsp/index.jsp"/>

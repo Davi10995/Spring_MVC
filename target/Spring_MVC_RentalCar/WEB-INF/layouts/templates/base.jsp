@@ -18,10 +18,10 @@
 <body>
 <div class="topnav">
     <a  class="active" href="${pageContext.request.contextPath}/home">Home</a>
-    <a href="#">Profilo</a>
+    <a href="${pageContext.request.contextPath}user/userProfile">Profilo</a>
     <a href="#">Parco Auto</a>
     <div class="login-container">
-        <p class="userName">Welcome ${currentUser.nome}</p>
+        <p class="userName">Welcome ${sessionScope.currentUser.nome}</p>
         <form action="logout" method="post" >
             <button type="submit">Logout</button>
         </form>

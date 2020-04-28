@@ -30,9 +30,9 @@ public class LoginValidator {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         UserDetails userDetail = (UserDetails) auth.getPrincipal();
         User currentUser = userService.getUserByCF(userDetail.getUsername());
+        HttpSession session = request.getSession();
+        session.setAttribute("currentUser", currentUser);
         if(currentUser.tipo.equals("SuperUser")) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", currentUser);
             List<User> users = userService.getUsers();
             model.addAttribute("users", users);
             return "homeAdmin";
