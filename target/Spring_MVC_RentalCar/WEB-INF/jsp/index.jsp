@@ -19,7 +19,7 @@
 <div style="text-align: center;">
     <h1>RentCar Autonoleggio</h1>
 </div>
-<img src="${pageContext.request.contextPath}../logo/logo.jpg">
+<img src="${pageContext.request.contextPath}../static/logo/logo.jpg">
 </body>
 </html>
 

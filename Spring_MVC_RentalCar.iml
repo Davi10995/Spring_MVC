@@ -6,7 +6,7 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
-          <factory-entry name="Spring_MVC_RentalCar" />
+          <factory-entry name="Spring_MVC_RentalCar" value="26c69fe6-49fe-475e-8a52-f73fccc16b52" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>

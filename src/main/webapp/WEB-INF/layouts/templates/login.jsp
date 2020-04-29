@@ -9,6 +9,8 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 <head>
     <%@ page isELIgnored="false" %>
@@ -22,9 +24,9 @@
     <a href="#contact">Contact</a>
     <div class="login-container">
         <p style=color:#ff0000; red >${errorMessge}</p>
-        <form action="${pageContext.request.contextPath}/appLogin" method="post" >
-            <input type="text" placeholder="CF" name="username"/><br/><br/>
-            <input type="password" placeholder="Password" name="password"/><br/><br/>
+        <form action="${pageContext.request.contextPath}/appLogin" method="post" modelAttribute="user" >
+            <input type="text" placeholder="CF" path="cf" name="username"/><br/><br/>
+            <input type="password" placeholder="Password" path="password" name="password"/><br/><br/>
             <button type="submit">Login</button>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         </form>

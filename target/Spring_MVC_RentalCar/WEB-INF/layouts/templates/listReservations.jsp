@@ -25,6 +25,7 @@
         <c:forEach var="prenotazione" items="${prenotazioni}">
             <tr>
                 <td><c:out value="${prenotazione.user.nome}" /></td>
+                <td><c:out value="${prenotazione.veicolo.casaCostrutt}" /></td>
                 <td><c:out value="${prenotazione.veicolo.modello}" /></td>
                 <td><c:out value="${prenotazione.dataInizio}" /></td>
                 <td><c:out value="${prenotazione.dataFine}" /></td>

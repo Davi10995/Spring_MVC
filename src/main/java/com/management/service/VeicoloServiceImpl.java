@@ -3,9 +3,11 @@ package com.management.service;
 import com.management.dao.VeicoloDao;
 import com.management.model.Veicolo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class VeicoloServiceImpl implements VeicoloService{
 
     @Autowired

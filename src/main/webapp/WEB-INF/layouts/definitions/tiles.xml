@@ -23,7 +23,7 @@
     </definition>
     <definition name="listUsers" template="/WEB-INF/layouts/templates/listUsers.jsp">
     </definition>
-    <definition name="listUsers" template="/WEB-INF/layouts/templates/listUsers.jsp">
+    <definition name="listVehicles" template="/WEB-INF/layouts/templates/listVehicles.jsp">
     </definition>
 
     <definition name="index" extends="login">

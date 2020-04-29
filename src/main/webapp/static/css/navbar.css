@@ -6,6 +6,10 @@ html, body
     padding:0;
 }
 
+.error{
+    color: red;
+}
+
 /* Style the navbar */
 .topnav {
     overflow: hidden;

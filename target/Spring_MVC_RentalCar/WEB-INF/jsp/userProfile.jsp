@@ -15,7 +15,7 @@
 </head>
 <body>
         <div align="center">
-            <button onclick="window.location.href = '/user/editCredentialsForm'">Modifica Credenziali</button>
+            <button onclick="window.location.href = '/user/editCredentialsForm?id=<c:out value="${sessionScope.currentUser.id}"/>';">Modifica Credenziali</button>
             <button onclick="window.location.href = '/user/userReservations?id=<c:out value="${sessionScope.currentUser.id}"/>';">Le mie prenotazioni</button>
         </div>
 </body>

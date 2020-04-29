@@ -34,8 +34,7 @@ public class PrenotazioneServiceImpl implements PrenotazioneService{
 
     @Override
     public List<Prenotazione> getReservationByUserId(int id) {
-        prenotazioneDao.getReservationByUserId(id);
-        return null;
+        return prenotazioneDao.getReservationByUserId(id);
     }
 
     @Override

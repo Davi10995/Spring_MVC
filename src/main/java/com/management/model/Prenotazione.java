@@ -3,6 +3,7 @@ package com.management.model;
 import com.management.model.Veicolo;
 import com.management.model.User;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -13,6 +14,7 @@ public class Prenotazione {
 
     @Column(name = "Id", updatable = false, nullable = false)
     public int id;
+
     @Column (name = "dataInizio")
     public Date dataInizio;
     @Column (name = "dataFine")

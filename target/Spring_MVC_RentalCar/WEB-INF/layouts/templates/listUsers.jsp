@@ -34,6 +34,7 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
         </tr>
             <button onclick="window.location.href = '/user/newUserForm';">Aggiungi Utente</button>
         <c:forEach var="user" items="${users}">
+            <c:if test= "${user.tipo == 'Customer'}">
                 <tr class="riga">
                     <td><c:out value="${user.cf}" /></td>
                     <td class="nome"><c:out value="${user.nome}" /></td>
@@ -45,10 +46,11 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="${pageContext.request.contextPath}user/deleteRequest?id=<c:out value='${user.id}' />">Delete</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="${pageContext.request.contextPath}user/reservationList?id=<c:out value='${user.id}' />">Visualizza Prenotazioni</a>
+                            <a href="${pageContext.request.contextPath}user/userReservations?id=<c:out value='${user.id}' />">Visualizza Prenotazioni</a>
                         </td>
 
                 </tr>
+            </c:if>
         </c:forEach>
     </table>
     <script>

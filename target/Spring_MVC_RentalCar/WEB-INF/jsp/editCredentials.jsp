@@ -8,28 +8,48 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<tiles:insertDefinition name="baseLayout" /><html>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<tiles:insertDefinition name="baseLayout" />
+<html>
 <head>
     <title>Title</title>
 </head>
 <body>
-<div  align="center">
-    <h2>Modifica Utente</h2>
+    <div align="center">
+        <h2>Modifica Utente</h2>
+        <form:form action="editCredentials" method="post" modelAttribute="user">
+            <table>
+                <tr>
+                    <td>CF</td>
+                    <td><form:input path="cf"/></td>
+                    <td><form:errors path="cf" cssClass="error"/></td>
+                </tr>
 
-    </br></br>
-    <form action="${pageContext.request.contextPath}editCredentials" method="post" >
-        CF:<input type="text" name="cf" value="<c:out value='${sessionScope.currentUser.cf}' />"/><br/><br/>
-        Nome:<input type="text" name="nome" value="<c:out value='${sessionScope.currentUser.nome}' />"/><br/><br/>
-        Cognome:<input type="text" name="cognome" value="<c:out value='${sessionScope.currentUser.cognome}' />"/><br/><br/>
-        <input type="hidden" name="password" value="<c:out value='${sessionScope.currentUser.password}' />">
-        <input type="hidden" name="tipo" value="<c:out value='${sessionScope.currentUser.tipo}' />">
-        <p style="color:red;">${error}</p>
-        Data:<input type="date" name="data" max="datetime local" value="<c:out value='${sessionScope.currentUser.data}' />"/><br/><br/>
-        <input type="hidden" name="id" value="<c:out value='${sessionScope.currentUser.id}' />">
-        <input type="submit" value="Save" />
-    </form>
-    </br></br>
-    <button onclick="window.location.href = '/user/editPasswordForm'">Modifica Password</button>
-</div>
+                <tr>
+                    <td>Nome</td>
+                    <td><form:input path="nome"/></td>
+                    <td><form:errors path="nome" cssClass="error"/></td>
+                </tr>
+
+                <tr>
+                    <td>Cognome</td>
+                    <td><form:input path="cognome"/></td>
+                    <td><form:errors path="cognome" cssClass="error"/></td>
+                </tr>
+                <tr>
+                    <td>Data</td>
+                    <td><input type="date" name="dataUser"></td><p style="color: red">${error}</p>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Salva"></td>
+                </tr>
+            </table>
+            <td><form:hidden path="data"/></td>
+            <td><form:hidden path="password"/></td>
+            <td><form:hidden path="tipo"/></td>
+            <td><form:hidden path="id"/></td>
+        </form:form>
+            <button onclick="window.location.href = '/user/editPasswordForm?id=<c:out value="${sessionScope.currentUser.id}"/>';">Modifica Password</button>
+    </div>
 </body>
 </html>

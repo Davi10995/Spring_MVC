@@ -15,9 +15,10 @@
     <body>
         <div align="center">
             <h2>Veicoli</h2>
+            <h3 style="color:red">${errorDelete}</h3>
             <table border="1" cellpadding="5">
-                <c:if test="${user.tipo == 'SuperUser'}">
-                    <button onclick="window.location.href = '/veicolo/newVeicoloForm';">Aggiungi Veicolo</button>
+                <c:if test="${sessionScope.currentUser.tipo == 'SuperUser'}">
+                    <button onclick="window.location.href = 'newVehicleForm';">Aggiungi Veicolo</button>
                 </c:if>
                 <tr>
                     <th>Targa</th>
@@ -32,16 +33,16 @@
                         <td><c:out value="${veicolo.modello}" /></td>
                         <td><c:out value="${veicolo.casaCostrutt}" /></td>
                         <td><c:out value="${veicolo.annoImm}" /></td>
-                        <c:if test="${user.tipo == 'SuperUser'}">
+                        <c:if test="${sessionScope.currentUser.tipo == 'SuperUser'}">
                             <td>
-                                <a href="${pageContext.request.contextPath}veicolo/editVehicleForm?id=<c:out value='${veicolo.id}' />">Modifica</a>
+                                <a href="${pageContext.request.contextPath}editVehicleForm?id=<c:out value='${veicolo.id}' />">Modifica</a>
                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="${pageContext.request.contextPath}veicolo/deleteVehicle?id=<c:out value='${veicolo.id}' />">Elimina</a>
+                                <a href="${pageContext.request.contextPath}delete?id=<c:out value='${veicolo.id}' />">Elimina</a>
                             </td>
                         </c:if>
                         <td>
                             <c:if test = "${veicolo.prenotabile == 'true'}">
-                                <a href="${pageContext.request.contextPath}/insertReservation?id=<c:out value='${veicolo.id}' />">Prenota</a>
+                                <a href="/${pageContext.request.contextPath}prenotazione/newForm?id=<c:out value='${veicolo.id}' />">Prenota</a>
                             </c:if>
                         </td>
                     </tr>

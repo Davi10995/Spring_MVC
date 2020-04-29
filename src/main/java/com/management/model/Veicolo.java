@@ -1,6 +1,9 @@
 package com.management.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="Veicolo", schema="rentcar")
@@ -10,16 +13,22 @@ public class Veicolo{
     @Column(name="Id", updatable = false,nullable=false)
     public int id;
 
+    @NotNull
+    @NotEmpty
     @Column(name="Targa")
     public String targa;
 
+    @NotEmpty
     @Column(name = "Modello")
     public String modello;
 
+    @NotEmpty
     @Column(name="CasaCostrutt")
     public String casaCostrutt;
 
 
+    @NotEmpty
+    @Pattern(regexp = "^(19[0-9][0-9]|20[01][0-9]|2020)$")
     @Column(name="AnnoImm")
     public String annoImm;
 
@@ -52,6 +61,13 @@ public class Veicolo{
         this. modello = modello;
         this.casaCostrutt = casaCostrutt;
         this.annoImm = annoImm;
+    }
+    public Veicolo(String targa, String modello, String casaCostrutt, String annoImm, boolean prenotabile) {
+        this.targa = targa;
+        this. modello = modello;
+        this.casaCostrutt = casaCostrutt;
+        this.annoImm = annoImm;
+        this.prenotabile = prenotabile;
     }
 
 

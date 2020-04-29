@@ -1,7 +1,12 @@
 package com.management.model;
 
+
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
-import java.util.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.util.Date;
 
 @Entity
 @Table(name="User")
@@ -11,21 +16,28 @@ public class User {
     @Column(name="Id", updatable = false,nullable=false)
     public int id;
 
+    @NotNull
+    @NotEmpty
     @Column(name="CF")
     public String cf;
 
+    @NotEmpty
     @Column(name="Nome")
     public String nome;
 
+    @NotEmpty
     @Column(name="Cognome")
     public String cognome;
 
+    @NotEmpty
+    @NotNull
     @Column(name="Password")
     public String password;
 
     @Column(name="Tipo")
     public String tipo;
 
+    @DateTimeFormat(pattern = "dd-MM-yyyy")
     @Column(name="Data")
     public Date data;
 
