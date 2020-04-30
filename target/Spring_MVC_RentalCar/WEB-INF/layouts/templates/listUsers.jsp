@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
             <option value="nome">Nome</option>
             <option value="cognome">Cognome</option>
         </select>
-        <input type="image" src="${pageContext.request.contextPath}../logo/search.png" id="image" />
+        <input type="image" src="${pageContext.request.contextPath}../static/logo/search.png" id="image" />
     </form>
     <table border="1" cellpadding="5">
         <tr class="column-header">

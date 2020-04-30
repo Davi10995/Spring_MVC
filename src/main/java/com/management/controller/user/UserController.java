@@ -54,14 +54,14 @@ public class UserController {
         return "success";
     }
 
-    @RequestMapping(value = "/user/newUserForm")
+    @
+    RequestMapping(value = "/user/newUserForm")
     public String newUserForm( Model model) throws ParseException {
         User user = new User();
         user.data = new Date();
         model.addAttribute("user", user);
         return "newUser";
     }
-
     @RequestMapping(value = "/user/newUser", method = RequestMethod.POST)
     public String newUser(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam(value = "dataUser") String data, Model model) throws ParseException {
 
