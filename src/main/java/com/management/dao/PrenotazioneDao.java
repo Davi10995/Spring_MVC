@@ -126,6 +126,28 @@ public class PrenotazioneDao {
         return prenotazioni;
     }
 
+    public List<Prenotazione> getPendingReservations() {
+
+        Transaction transaction = null;
+        List<Prenotazione> prenotazioni = null;
+        try (Session session = openSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            Query query = session.createQuery("from Prenotazione p where p.approvata= :approved");
+            query.setParameter("approved", false);
+            prenotazioni = query.list();
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return prenotazioni;
+    }
+
     /**
      * Get all Prenotazioni
      *

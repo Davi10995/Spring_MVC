@@ -37,13 +37,16 @@
     <form:form action="new" method="post" modelAttribute="prenotazione">
     <table>
         <tr>
-        <td>Data Inizio</td>
-        <td><input type="date" name="dataI"/></td>
+            <td>Data Inizio</td>
+            <td><form:input type="date" path="dataInizio"/></td>
+            <td><form:errors path="dataInizio" cssClass="error"/></td>
         </tr>
         <tr>
             <td>Data Fine</td>
-            <td><input type="date" name="dataF"/></td>
+            <td><form:input type="date" path="dataFine"/></td>
+            <td><form:errors path="dataFine" cssClass="error"/></td>
         </tr>
+
         <tr>
             <td><input type="submit" value="Salva"></td>
         </tr>

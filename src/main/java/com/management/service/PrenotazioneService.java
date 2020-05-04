@@ -10,4 +10,5 @@ public interface PrenotazioneService {
     void updateReservation(Prenotazione prenotazione);
     List<Prenotazione> getReservationByUserId(int id);
     Prenotazione getReservationById(int id);
+    List<Prenotazione> getPendingReservations();
 }

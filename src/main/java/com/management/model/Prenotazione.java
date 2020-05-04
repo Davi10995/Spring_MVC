@@ -1,9 +1,13 @@
 package com.management.model;
 
-import com.management.model.Veicolo;
-import com.management.model.User;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.ZoneId;
 import java.util.Date;
 
 @Entity
@@ -15,15 +19,27 @@ public class Prenotazione {
     @Column(name = "Id", updatable = false, nullable = false)
     public int id;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     @Column (name = "dataInizio")
     public Date dataInizio;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     @Column (name = "dataFine")
     public Date dataFine;
+
     @Column (name = "fk_user")
     public int fk_user;
+
     @Column (name = "fk_veicolo")
     public int fk_veicolo;
+
+    @Column(name="approvata")
+    public boolean approvata;
+
     public User user;
+
     public Veicolo veicolo;
 
     @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
@@ -66,6 +82,12 @@ public class Prenotazione {
     public int getFk_user(){ return fk_user;}
     public void setFk_veicolo(int fk_veicolo){ this.fk_veicolo = fk_veicolo;}
     public int getFk_veicolo(){ return fk_veicolo;}
+    public void setApprovata(boolean approvata){
+        this.approvata = approvata;
+    }
+    public boolean getApprovata(){
+        return this.approvata;
+    }
     public Date getDataInizio(){
         return this.dataInizio;
     }
@@ -77,5 +99,12 @@ public class Prenotazione {
     }
     public void setDataFine(Date dataFine){
         this.dataFine = dataFine;
+    }
+
+    public boolean editDelete() {
+        LocalDate data = Instant.ofEpochMilli(this.dataInizio.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate today = LocalDate.now();
+        int giorni = Period.between(today, data).getDays();
+        return  giorni >= 2;
     }
 }

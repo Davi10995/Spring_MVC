@@ -41,4 +41,9 @@ public class PrenotazioneServiceImpl implements PrenotazioneService{
     public Prenotazione getReservationById(int id) {
         return prenotazioneDao.getReservationById(id);
     }
+
+    @Override
+    public List<Prenotazione> getPendingReservations() {
+        return prenotazioneDao.getPendingReservations();
+    }
 }

@@ -6,21 +6,15 @@ import com.management.model.User;
 import com.management.service.PrenotazioneService;
 import com.management.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.http.HttpRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -41,15 +35,14 @@ public class UserController {
     }
 
     @RequestMapping(value = "user/edit", method = RequestMethod.POST)
-    public String edit(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam(value = "dataUser") String data, Model model) throws ParseException {
+    public String edit(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) throws ParseException {
         if(result.hasErrors()){
             return "editUser";
         }
-        if(data.isEmpty()){
+        if(user.data==null){
             model.addAttribute("error", "Inserisci la data");
             return "editUser";
         }
-        user.data = new SimpleDateFormat("yyyy-MM-dd").parse(data);
         userService.updateUser(user);
         return "success";
     }
@@ -58,21 +51,19 @@ public class UserController {
     RequestMapping(value = "/user/newUserForm")
     public String newUserForm( Model model) throws ParseException {
         User user = new User();
-        user.data = new Date();
         model.addAttribute("user", user);
         return "newUser";
     }
     @RequestMapping(value = "/user/newUser", method = RequestMethod.POST)
-    public String newUser(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam(value = "dataUser") String data, Model model) throws ParseException {
+    public String newUser(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) throws ParseException {
 
         if(result.hasErrors()){
             return "newUser";
         }
-        if(data.isEmpty()){
+        if(user.data==null){
             model.addAttribute("error", "Inserisci la data");
             return "newUser";
         }
-        user.data = new SimpleDateFormat("yyyy-MM-dd").parse(data);
         user.tipo = "Customer";
         userService.newUser(user);
         return "success";
@@ -121,33 +112,18 @@ public class UserController {
     }
 
     @RequestMapping(value = "user/editCredentials")
-    public String editCredentials(@Valid @ModelAttribute("user") User user, BindingResult result, @RequestParam(value = "dataUser") String data, Model model) throws ParseException {
+    public String editCredentials(@Valid @ModelAttribute("user") User user, BindingResult result, Model model) throws ParseException {
         if(result.hasErrors()){
             return "editCredentials";
         }
-        if(data.isEmpty()){
+        if(user.data==null){
             model.addAttribute("error", "Inserisci la data");
-            return "editCredentials";
+            return "newUser";
         }
-        user.data = new SimpleDateFormat("yyyy-MM-dd").parse(data);
         userService.updateUser(user);
         return "success";
     }
-//    @RequestMapping(value = "/user/editCredentials")
-//    public String editCredentials(@RequestParam(value = "cf") String cf, @RequestParam(value = "nome") String nome,
-//                       @RequestParam(value = "cognome") String cognome, @RequestParam(value = "password") String oldPassword,
-//                       @RequestParam(value = "data") String date, @RequestParam(value = "tipo") String tipo,
-//                       @RequestParam(value = "id") String id, Model model) throws ParseException {
-//        if(date.equals("")){
-//            model.addAttribute("error", "Inserire la data");
-//            return "editCredentials";
-//        }
-//        Date data = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-//        User user = new User(cf, nome, cognome, oldPassword, tipo, data);
-//        user.id = Integer.parseInt(id);
-//        userService.updateUser(user);
-//        return "success";
-//    }
+
 
 
 

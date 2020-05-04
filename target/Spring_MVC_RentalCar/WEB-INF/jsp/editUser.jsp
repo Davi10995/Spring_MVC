@@ -38,12 +38,17 @@
             </tr>
             <tr>
                 <td>Data</td>
-                <td><input type="date" name="dataUser"></td>
+                <td><form:input type="data" path="data"/></td>
+                <td><form:errors path="data" cssClass="error"/></td>
             </tr>
+<%--            <tr>--%>
+<%--                <td>Data</td>--%>
+<%--                <td><input type="date" name="dataUser"></td>--%>
+<%--            </tr>--%>
             <tr>
                 <td><input type="submit" value="Salva"></td>
             </tr>
-            <td><form:hidden path="data"/></td>
+<%--            <td><form:hidden path="data"/></td>--%>
             <td><form:hidden path="password"/></td>
             <td><form:hidden path="tipo"/></td>
             <td><form:hidden path="id"/></td>

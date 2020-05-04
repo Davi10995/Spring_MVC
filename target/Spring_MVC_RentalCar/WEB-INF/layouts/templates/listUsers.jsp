@@ -55,32 +55,34 @@ pageEncoding="UTF-8"%><%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/co
     </table>
     <script>
 
-        if(document.getElementById("filtro").value === 'nome') {
-            console.log('qui si');
+            var value;
+            var tableRow;
             $('#search_input').on('keyup', function () {
-                var value = $(this).val();
-                $('tr.riga').hide();//hide all record
-                var tableRow = $("td.nome").filter(function() {
-                    if($(this).text().indexOf(value)  >= 0 ){
-                        return $(this);
-                    }
-                }).closest("tr"); // alternative to .parent()
-                console.log(tableRow.text());
-                tableRow.show();
+                if(document.getElementById("filtro").value === 'nome') {
+                    value = $(this).val();
+                    $('tr.riga').hide();//hide all record
+                    tableRow = $("td.nome").filter(function () {
+                        if ($(this).text().indexOf(value) >= 0) {
+                            return $(this);
+                        }
+                    }).closest("tr"); // alternative to .parent()
+                    console.log(tableRow.text());
+                    tableRow.show();
+                }else{
+                    value = $(this).val();
+                    $('tr.riga').hide();//hide all record
+                    tableRow = $("td.cognome").filter(function () {
+                        if ($(this).text().indexOf(value) >= 0) {
+                            return $(this);
+                        }
+                    }).closest("tr"); // alternative to .parent()
+                    console.log(tableRow.text());
+                    tableRow.show();
+                }
             });
 
-        }else{
-            $(function () {
-                $('#search_input').on('keyup', function () {
-                    var value = $(this).val();
-                    console.log(value);
-                    $('table').hide();//hide all record
-                    $('table').filter(function () {
-                        return $(this).find('cognome').val().indexOf(value) != -1;
-                    }).show();
-                });
-            });
-        }
+
+
     </script>
 
 </div>

@@ -37,7 +37,8 @@ public class User {
     @Column(name="Tipo")
     public String tipo;
 
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull
     @Column(name="Data")
     public Date data;
 

@@ -17,6 +17,9 @@
         <div align="center">
             <button onclick="window.location.href = '/user/editCredentialsForm?id=<c:out value="${sessionScope.currentUser.id}"/>';">Modifica Credenziali</button>
             <button onclick="window.location.href = '/user/userReservations?id=<c:out value="${sessionScope.currentUser.id}"/>';">Le mie prenotazioni</button>
+            <c:if test="${sessionScope.currentUser.tipo == 'SuperUser'}">
+                <button onclick="window.location.href = '/prenotazione/reservations';">Prenotazioni da approvare</button>
+            </c:if>
         </div>
 </body>
 <tiles:insertDefinition name="footer" />

@@ -47,8 +47,13 @@
                     </tr>
                     <tr>
                         <td>Data</td>
-                        <td><input type="date" name="dataUser"></td><p style="color: red">${error}</p>
+                        <td><form:input type="date" path="data"/></td>
+                        <td><form:errors path="data" cssClass="error"/></td>
                     </tr>
+<%--                    <tr>--%>
+<%--                        <td>Data</td>--%>
+<%--                        <td><input type="date" name="dataUser"></td><p style="color: red">${error}</p>--%>
+<%--                    </tr>--%>
                     <tr>
                         <td><input type="submit" value="Salva"></td>
                     </tr>
